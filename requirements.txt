@@ -59,5 +59,8 @@ ultralytics-thop==2.0.14
 urllib3==2.5.0
 watchdog==6.0.0
 ultralytics
-
-
+ultralytics==8.0.227
+opencv-python
+streamlit
+pillow
+torch>=2.0.0

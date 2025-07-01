@@ -3,25 +3,30 @@ from ultralytics import YOLO
 from PIL import Image
 import numpy as np
 import cv2
-import tempfile
-import os
 
+# App title
 st.title("🧍 YOLOv8 Person Counter with Bounding Boxes")
 
+# Upload image
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+
+# Cache the model so it doesn't reload on every run
+@st.cache_resource
+def load_model():
+    return YOLO("yolov8n.pt")  # Automatically downloads the model if not present
+
+model = load_model()
 
 if uploaded_file:
     image = Image.open(uploaded_file).convert("RGB")
     st.image(image, caption="Uploaded Image", use_container_width=True)
 
-    # Convert to numpy for YOLO processing
+    # Convert PIL image to numpy array (BGR for OpenCV)
     image_np = np.array(image)
 
-    # Load YOLOv8 model
-    model = YOLO("yolov8n.pt")
-
-    # Run detection
-    results = model.predict(image_np, conf=0.3)[0]
+    # Detect with spinner
+    with st.spinner("Detecting persons..."):
+        results = model.predict(image_np, conf=0.3)[0]
 
     person_count = 0
     names = model.names
@@ -40,6 +45,6 @@ if uploaded_file:
 
     st.success(f"🧍 Persons Detected: {person_count}")
 
-    # Convert back to PIL and display
+    # Convert back to PIL for Streamlit display
     result_image = Image.fromarray(image_np)
     st.image(result_image, caption="Detections", use_container_width=True)
