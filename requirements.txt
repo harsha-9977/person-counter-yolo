@@ -1,4 +1,7 @@
 streamlit==1.26.0
 ultralytics==8.0.227
-opencv-python-headless==4.10.0.82
-Pillow==9.5.0  # or any version between 7.1.0 and 10.0.0
+opencv-python-headless==4.8.0.74
+Pillow==10.2.0
+torch==2.1.2
+torchvision==0.16.2
+numpy==1.26.4
