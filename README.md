@@ -92,7 +92,7 @@ This app uses [Ultralytics YOLOv8](https://docs.ultralytics.com/) models. You ca
 
 ## 👤 Author
 
-* **Harsha** – [@your\_github](https://github.com/harsha-9977)
+* **Harsha** – [@\_github](https://github.com/harsha-9977)
 
 ---
 
